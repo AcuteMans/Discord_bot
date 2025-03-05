@@ -1,26 +1,10 @@
-// Require the necessary discord.js classes
-import { Client, Events, GatewayIntentBits , Partials} from "discord.js";
+import DiscordBot from "./classes/discordbot.js";
 import "dotenv/config";
 
-// Create a new client instance
-const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
-    GatewayIntentBits.DirectMessages,
-  ],
-  partials: [Partials.Channel, Partials.Message],
-});
+const TEST_CHANNEL_ID = "1346905381435080805";
 
-client.login(process.env.DISCORD_TOKEN);
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 
-client.on("ready", () => {
-  console.log(`${client.user.tag} has logged in`);
-});
+const discordBot = new DiscordBot(DISCORD_TOKEN);
 
-client.on("messageCreate", (message) => {
-  if (message.content === "hello") {
-    message.reply("hello buddy");
-  }
-});
+
